@@ -11,33 +11,33 @@ import random
 
 
 class BiliBili(object):
-    """模拟登录B站"""
+    """Login bilibili website."""
     def __init__(self):
         self.driver = webdriver.Chrome()
         self.url = 'https://passport.bilibili.com/login'
         self.wait = WebDriverWait(self.driver, 10)
 
     def crack(self, username, password):
-        """破解滑动验证码
-        :param username: 用户手机号
-        :param password: 用户密码
+        """Crack its captcha
+        :param username: Your phonenumber
+        :param password: Your password
         :return:
         """
         self.driver.get(self.url)
         self.wait.until(EC.presence_of_element_located((By.XPATH, '//div[@class="gt_slider_knob gt_show"]')))
 
-        # B站需要先输入用户名和密码，才能有效的执行验证码的滑动
-        # 输入用户名
+        # This website your must enter your usr and passwd, and it can execute impactfully.
+        # Enter your usr.
         user = self.driver.find_element_by_xpath('//input[@id="login-username"]')
         user.clear()
         user.send_keys(username)
 
-        # 输入密码
+        # Enter your passwd.
         passwd = self.driver.find_element_by_xpath('//input[@id="login-passwd"]')
         passwd.clear()
         passwd.send_keys(password)
 
-        # 分别获取有缺口和无缺口的两张验证码图片
+        # Get two captcha images from login page.
         slider = self.driver.find_element_by_xpath('//div[@class="gt_slider_knob gt_show"]')
         ActionChains(self.driver).move_to_element(slider).perform()
         time.sleep(1)
@@ -46,23 +46,24 @@ class BiliBili(object):
         time.sleep(3)
         cut = self.captchaimage('cut.png')
 
-        # 计算两张图片的像素差，确保拖动的距离误差不会很大
+        # Calculate the pixel difference between the two pictures to ensure that the distance error is not large.
         distance = self.distance(full, cut)
-        # 拖动滑块
+        
+        # Drag slider.
         self.drag(distance)
         try:
-            # 判断是否验证成功
+            # Decide whether to verify successfully.
             self.wait.until(EC.presence_of_element_located((By.XPATH, '//div[@class="gt_info_tip gt_success"]')))
-            print('登陆成功！！！')
+            print('Login successfully！！！')
         except TimeoutException:
-            print("验证失败！重新进行验证！")
+            print("Failed！Need try again！")
             time.sleep(3)
             return self.drag(distance)
 
     def captchaimage(self, name):
-        """获取验证码图片
-        :param name: 截图名称
-        :return:
+        """Get captcha images
+        :param name: Name of Cropping 
+        :return:Image object
         """
         self.driver.get_screenshot_as_file('screen.png')
         screen = Image.open('screen.png')
@@ -78,10 +79,10 @@ class BiliBili(object):
         return img
 
     def distance(self, img1, img2):
-        """计算两张截图的像素差，求出滑块移动的距离
-        :param img1: 完整的验证码图片
-        :param img2: 带缺口的验证码图片
-        :return track:    移动距离
+        """Calculate the pixel difference between the two shots, and find out the distance of the slider moving.
+        :param img1: Full img
+        :param img2: Gap img
+        :return track: Moved distance
         """
         x, y = 60, 1
         track = 0
@@ -101,19 +102,19 @@ class BiliBili(object):
         return track
 
     def drag(self, distance):
-        """拖动滑块执行登录
-        :param distance: 滑块移动距离
+        """Drag slider and login
+        :param distance: Distance of moving slider
         :return:
         """
         element = self.driver.find_element_by_xpath('//div[@class="gt_slider_knob gt_show"]')
-        # 除去滑块左边的一点偏移量
+        # Subtract the offset from the left side of the slider.
         distance -= 7
 
-        # 开始拖动滑块
+        # Start to drag slider
         ActionChains(self.driver).click_and_hold(element).perform()
         time.sleep(0.5)
 
-        # 拖动的时候先加速，再减速
+        # Speed up when you drag, then slow down.
         while distance > 0:
             if distance > 10:
                 # If distance > 10, move slider faster
