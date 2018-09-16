@@ -6,7 +6,7 @@
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
-import base64
+
 
 
 class SteamSpiderMiddleware(object):
