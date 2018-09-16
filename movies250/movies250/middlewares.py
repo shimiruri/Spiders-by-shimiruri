@@ -108,7 +108,7 @@ class Movies250DownloaderMiddleware(object):
 class ProxyMiddleware(object):
 
     def process_request(self, request, spider):
-        request.meta["proxy"] = "http://10.191.131.16:3128"
-        proxy_user_pass = "F2161591:hC8ReN5V"
+        request.meta["proxy"] = "http://ip:port"
+        proxy_user_pass = "usr:passwd"
         encoded_user_pass = base64.b64encode(proxy_user_pass.encode(encoding='utf-8')).decode()
         request.headers["Proxy-Authorization"] = "Basic " + encoded_user_pass
