@@ -73,7 +73,7 @@ class BiliBili(object):
         left, top, right, bottom = location.get('x'), location.get('y'), location.get('x') + size.get('width'), location.get('y') + size.get('height')
         cropimg = screen.crop((left, top, right, bottom))
 
-        # 灰度转换过滤掉小阴影
+        # Grayscale conversion, but not necessary
         img = cropimg.convert('L')
         img.save(name)
         return img
@@ -121,13 +121,13 @@ class BiliBili(object):
                 track = random.randint(5, 8)
                 ActionChains(self.driver).move_by_offset(xoffset=track, yoffset=0).perform()
                 distance -= track
-                # Time is question!!!
+                # Time is more important!!!
                 time.sleep(random.randint(1, 3) / 10)
             else:
                 track = random.randint(2, 3)
                 ActionChains(self.driver).move_by_offset(xoffset=track, yoffset=0).perform()
                 distance -= track
-                # Time is question!!!
+                # Time is more important!!!
                 time.sleep(random.randint(4, 5) / 10 + random.random())
         ActionChains(self.driver).release(on_element=element).perform()
 
