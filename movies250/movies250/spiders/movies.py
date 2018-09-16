@@ -5,42 +5,6 @@ from movies250.items import *
 from scrapy.http import Request
 
 
-cookie = [
-    'll="108289"',
-    ' bid=4tzTVwG1T5M',
-    ' _ga=GA1.2.1575338880.1521202914',
-    ' __utmv=30149280.17547',
-    ' __yadk_uid=sjNs7zNQGluwdU1mhuVlH78XVEGLbDEb',
-    ' _vwo_uuid_v2=DA5252EF0963EB3E0F5423AFBEDE747DD|d1fdfc0ae134ebf81698c9c0cc347ec2',
-    ' __utmz=223695111.1525616195.7.5.utmcsr=baidu|utmccn=(organic)|utmcmd=organic',
-    ' viewed="1019568"',
-    ' gr_user_id=bccc63b1-cfba-4e6d-aeb9-92c028c1cc8a',
-    ' __utmz=30149280.1533220063.11.7.utmcsr=baidu|utmccn=(organic)|utmcmd=organic',
-    ' ct=y',
-    ' ps=y',
-    ' ue="2847486314@qq.com"',
-    ' push_noty_num=0',
-    ' push_doumail_num=0',
-    ' ap_v=1,6.0',
-    ' _pk_ref.100001.4cf6=%5B%22%22%2C%22%22%2C1535552748%2C%22http%3A%2F%2Fwww.baidu.com%2Flink%3Furl%3DDKeKBDmAOO'
-    'AT2ayZQO5OO52nukw3OVjLD1SFcWvVQgpWzMC_uAfvgeVgMeehBQsv%26wd%3D%26eqid%3Dc8e09b2600095e1e000000035aeef37f%22%5D',
-    ' _pk_ses.100001.4cf6=*',
-    ' __utma=30149280.1575338880.1521202914.1535470544.1535552750.15',
-    ' __utmb=30149280.0.10.1535552750',
-    ' __utmc=30149280',
-    ' __utma=223695111.1575338880.1521202914.1535470544.1535552750.11',
-    ' __utmb=223695111.0.10.1535552750',
-    ' __utmc=223695111',
-    ' _pk_id.100001.4cf6=d0208047fbc69b83.1524143613.11.1535553146.1535471180.',
-    ' dbcl2="175472122:SkJEeWsWaFI"'
-]
-itemDict = {}
-for item in cookie:
-        key = item.split('=')[0].replace(' ', '')
-        value = item.split('=')[1]
-        itemDict[key] = value
-
-
 class MoviesSpider(CrawlSpider):
     name = 'movies'
     allowed_domains = ['movie.douban.com']
@@ -54,7 +18,7 @@ class MoviesSpider(CrawlSpider):
     headers = {
         'Connection': 'keep - alive'
     }
-    cookies = itemDict
+    cookies = 'cookie'
 
     def start_requests(self):
         yield Request(url=self.first_url, headers=self.headers, cookies=self.cookies)
