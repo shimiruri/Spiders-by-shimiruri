@@ -55,6 +55,7 @@ class BiliBili(object):
             # Decide whether to verify successfully.
             self.wait.until(EC.presence_of_element_located((By.XPATH, '//div[@class="gt_info_tip gt_success"]')))
             print('Login successfully！！！')
+            self.driver.quit()
         except TimeoutException:
             print("Failed！Need try again！")
             time.sleep(3)
