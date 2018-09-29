@@ -2,3 +2,4 @@
 
 (1)'func_to_threading.py' is a little script with threading modules.
 The script via to define function to use 'threading' module.
+And the json file 'titles.json' is this script's result.
