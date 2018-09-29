@@ -48,7 +48,7 @@ if __name__ == '__main__':
     baseURL = "http://www.pythontab.com/html/pythonjichu/"
     urlQUEUE = queue.Queue()
     dataQUEUE = queue.Queue()
-    file = open('titles.json', 'a')
+    file = open('titles.json', 'a', encoding='utf-8')
     lock = threading.Lock()
 
     # 为url队列添加元素
