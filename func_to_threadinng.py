@@ -7,8 +7,11 @@ import json
 from lxml import etree
 
 
-# 生产者
 def produter(urlQueue):
+    """获取网页源码
+    :param urlQueue: 保存url的队列
+    :return:
+    """
     while True:
         try:
             url = urlQueue.get(False)
@@ -21,8 +24,13 @@ def produter(urlQueue):
             break
 
 
-# 消费者
 def costumer(file, dataQueue, lock):
+    """对响应进行解析并保存
+    :param file: 数据保存所在目录
+    :param dataQueue: 存储响应的队列
+    :param lock: 线程锁。用于同步线程，保证写数据时的稳定
+    :return:
+    """
     while True:
         try:
             html = etree.HTML(dataQueue.get(False))
