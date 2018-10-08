@@ -8,7 +8,7 @@ import json
 
 
 class MoviesPipeline(object):
-	"""保存为JSON格式，以保证数据的正确性"""
+	"""保存为JSON格式，方便保存和查看"""
 	def __init__(self):
 		self.file1 = open('Basic_infos.json', 'a', encoding='utf-8')
 		self.file2 = open('Reviews_detials.json', 'a', encoding='utf-8')
