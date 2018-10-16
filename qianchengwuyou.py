@@ -71,7 +71,7 @@ class MySQL(object):
         """Basic of class params.Pay attention to adding db params 'charset'.
         :param dbname: Set a name of database.
         """
-        db = pymysql.connect(host='localhost', user='root', password='wzc1904891339', port=3306, charset='utf8')
+        db = pymysql.connect(host='your host', user='your name', password='your password', port='your port number', charset='utf8')
         db.cursor().execute("CREATE DATABASE IF NOT EXISTS %s DEFAULT CHARACTER SET utf8" % dbname)
         self.db = pymysql.connect(host='localhost', user='root', password='wzc1904891339', port=3306, charset='utf8', db=dbname)
         self.cursor = self.db.cursor()
