@@ -25,9 +25,9 @@ class QianCheng(object):
         :return: Its response.
         """
         response = requests.get(url, headers=self.headers)
-        response = str(response.content.decode("GBK"))
+        response = response.content.decode("GBK")
         return response
-
+    
     def parse(self, response):
         """To parse responses.
         :param response: Each response from the request.
@@ -35,15 +35,16 @@ class QianCheng(object):
         """
         html = etree.HTML(response)
         pages = int(re.findall('共(\d+)页，到第', response)[0])
-        results = html.xpath('//div[@id="resultList"]')
+        results = html.xpath('//div[@id="resultList"]/div[@class="el"]')
         for result in results:
-            position = result.xpath('//p/span/a/@title')
-            detail_page = result.xpath('//p/span/a/@href')
-            company = result.xpath('//span[@class="t2"]/a/text()')
-            address = result.xpath('//div[@class="el"]/span[@class="t3"]/text()')
-            salary = result.xpath('//div[@class="el"]/span[@class="t4"]/text()')
-        for i in zip(position, detail_page, company, address, salary):
-            self.db.insert(i)
+            position = result.xpath('p/span/a/@title')[0]
+            detail_page = result.xpath('p/span/a/@href')[0]
+            company = result.xpath('span[@class="t2"]/a/text()')[0]
+            address = result.xpath('span[@class="t3"]/text()')[0]
+            salary = result.xpath('span[@class="t4"]/text()')
+            if len(salary) == 0:
+                salary = '尚未公布'
+            self.db.insert((position, detail_page, company, address, salary))
         return pages
 
     def all_responses(self):
@@ -73,7 +74,7 @@ class MySQL(object):
         """
         db = pymysql.connect(host='your host', user='your name', password='your password', port='your port number', charset='utf8')
         db.cursor().execute("CREATE DATABASE IF NOT EXISTS %s DEFAULT CHARACTER SET utf8" % dbname)
-        self.db = pymysql.connect(host='localhost', user='root', password='wzc1904891339', port=3306, charset='utf8', db=dbname)
+        self.db = pymysql.connect(host='your host', user='your name', password='your password', port='your port number', charset='utf8', db=dbname)
         self.cursor = self.db.cursor()
         self.dbname = dbname
 
