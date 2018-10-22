@@ -44,6 +44,8 @@ class QianCheng(object):
             salary = result.xpath('span[@class="t4"]/text()')
             if len(salary) == 0:
                 salary = '尚未公布'
+            else:
+                salary = salary[0]
             self.db.insert((position, detail_page, company, address, salary))
         return pages
 
