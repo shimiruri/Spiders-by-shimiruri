@@ -59,7 +59,7 @@ class BiliBili(object):
         except TimeoutException:
             print("Failed！Need try again！")
             time.sleep(3)
-            return self.drag(distance)
+            return distance
 
     def captchaimage(self, name):
         """Get captcha images
