@@ -34,7 +34,7 @@ class Sina(object):
         response_3 = self.session.get(next_url, headers=self.headers, verify=False).text
         next_url = re.findall('\"redirect\":\"(.*?)\"', response_3)[0]
         response_4 = self.session.get(next_url.replace('\\', ''), headers=self.headers, verify=False).text
-        if '志村平秀88' in response_4:
+        if '你的用户名' in response_4:
             print('登录成功！')
         else:
             print(response.status_code)
@@ -112,7 +112,7 @@ class Sina(object):
 
 if __name__ == '__main__':
     urllib3.disable_warnings()
-    s = Sina('19902051257', 'wzc1904891339')
+    s = Sina('手机号', '登录密码')
     r = s.login()
 
 
