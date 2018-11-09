@@ -1,5 +1,20 @@
 # Spiders-by-shimiruri
 
-This program can login bilibili website,but you should enter your usr and passwd.
-And if you have any update for my program, please tell me, and I can study for your suggest.
-Thank you very much!!!
+项目名：Bilibili 2000万用户信息采集
+
+环境：Python3
+
+IDE：PyCharm
+
+库：scrapy_redis, scrapy, requests, re, json, selenium
+
+项目流程：selenium破解滑动验证码之后获取cookies；
+         requests库建立测试程序验证cookies；
+         解析目标网站（AJAX类型），构建分布式爬虫；
+         存储数据至MongoDB。
+         
+技术实现：动态代理池更换代理
+         selenium + Webdriver浏览器渲染破解滑动验证码
+         scrapy-redis构建分布式爬虫
+         AJAX逆向工程
+
