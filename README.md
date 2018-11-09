@@ -6,7 +6,7 @@
 
 IDE：PyCharm
 
-库：scrapy_redis, scrapy, requests, re, json, selenium
+库：scrapy_redis, scrapy, requests, re, json, selenium, pillow
 
 项目流程：selenium破解滑动验证码之后获取cookies；
          requests库建立测试程序验证cookies；
