@@ -13,9 +13,9 @@ IDE：PyCharm
          解析目标网站（AJAX类型），构建分布式爬虫；
          存储数据至MongoDB。
          
-技术实现：动态代理池更换代理
-         flask搭建代理池API
-         selenium + Webdriver浏览器渲染破解滑动验证码
-         scrapy-redis构建分布式爬虫
-         AJAX逆向工程
+技术实现：动态代理池更换代理；
+         flask搭建代理池API；
+         selenium + Webdriver浏览器渲染破解滑动验证码；
+         scrapy-redis构建分布式爬虫；
+         AJAX逆向工程。
 
