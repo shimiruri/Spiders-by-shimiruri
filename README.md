@@ -1,2 +1,4 @@
 # Spiders-by-shimiruri
-That's a great journey!
+
+
+Python爬虫项目记录。
