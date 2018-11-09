@@ -22,7 +22,7 @@ init_score = 10
 valid_status = 200
 
 # Set proxy test url,but it should set url what you need crawl
-test_url = 'https://www.bilibili.com/'
+test_url = 'https://weixin.sogou.com/weixin?query=python&type=2&page=1&ie=utf8'
 
 # Set max test number of testing proxy one times
 max_test_count = 50
