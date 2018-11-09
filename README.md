@@ -1,20 +1,14 @@
-# Spiders-by-shimiruri
-
-项目名：Bilibili 2000万用户信息采集
+项目名：微信公众号信息采集
 
 环境：Python3
 
 IDE：PyCharm
 
-库：scrapy_redis, scrapy, redis, flask, requests, re, json, selenium, pillow
+库：scrapy_redis, scrapy, redis, flask, requests, json
 
-项目描述：selenium破解滑动验证码之后获取cookies；
-         requests库建立测试程序验证cookies；
-         解析目标网站（AJAX类型），构建分布式爬虫；
-         存储数据至MongoDB。
+项目描述：先对目标网页进行解析，定制抽取规则为翻页和请求详情页，搭建代理池进行动态更换代理保证采集效率。
          
 技术实现：动态代理池更换代理；
          flask搭建代理池API；
-         selenium + Webdriver浏览器渲染破解滑动验证码；
          scrapy-redis构建分布式爬虫；
-         AJAX逆向工程。
+         cookies模拟登录
