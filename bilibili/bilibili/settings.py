@@ -20,7 +20,7 @@ NEWSPIDER_MODULE = 'bilibili.spiders'
 
 
 def get_cookies():
-    # bilibili.BiliBili().crack('19902051257', 'wzc5763271430')
+    bilibili.BiliBili().crack('username', 'password')
     cookies_dict = dict()
     with open("D:/ScrapySpider/bilibili/cookies.txt", 'r') as fp:
         cookies = json.load(fp)
